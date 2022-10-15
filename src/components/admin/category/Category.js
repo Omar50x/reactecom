@@ -56,7 +56,7 @@ function Category() {
             <h1 className="mt-4">Add Category</h1>
             {
                 display_errors.map((item) => {
-                    return (<p className="mb-1">{item}</p>);
+                    return (<p className="mb-1" key={item}>{item}</p>);
                 })
             }
             <form onSubmit={submitCategory} id="CATEGORY_FORM">
