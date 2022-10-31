@@ -1,7 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom';
-import MasterLayout from "./layouts/admin/MasterLayout";
-import Home from './components/frontend/Home';
+import PublicRoute from "./PublicRoute";
 import Login from "./components/frontend/auth/Login";
 import Regiter from "./components/frontend/auth/Register";
 import AdminPrivateRoute from './AdminPrivateRoute'
@@ -25,19 +24,18 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/403" component={Page403} />
-          <Route exact path="/404" component={Page404} />
-          {/* <Route path="/login" component={Login} />
-          <Route path="/register" component={Regiter} /> */}
+          <AdminPrivateRoute path="/admin" name="Admin" />
+
+          <PublicRoute path="/" name="Home" />
+          <Route path="/403" component={Page403} />
+          <Route path="/404" component={Page404} />
+
           <Route path="/login">
             {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Login />}
           </Route>
           <Route path="/register">
             {localStorage.getItem('auth_token') ? <Redirect to='/' /> : <Regiter />}
           </Route>
-          {/* <Route path="/admin" name="Admin" render={(props) => <MasterLayout {...props} />} /> */}
-          <AdminPrivateRoute path="/admin" name="Admin" />
         </Switch>
       </Router>
     </div>
