@@ -65,6 +65,22 @@ function AddProduct() {
         axios.post(`/api/store-product`, formData).then(res => {
             if (res.data.status === 200) {
                 swal("Success", res.data.message, "success");
+                setProduct({...productInput,
+                    category_id: '',
+                    slug: '',
+                    name: '',
+                    description: '',
+                    meta_title: '',
+                    meta_keyword: '',
+                    meta_descrip: '',
+                    selling_price: '',
+                    original_price: '',
+                    qty: '',
+                    brand: '',
+                    featured: '',
+                    popular: '',
+                    status: '',
+                });
                 setError([]);
             } else if (res.data.status === 422) {
                 swal("All fields are mandetory", "", "error");
